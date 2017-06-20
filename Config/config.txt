@@ -1,0 +1,9 @@
+delay=30
+recess=10
+warmup_delay=30
+Runtime=0.8
+stimuli=True,RAN,IMG
+warmup=True,ORD,IMG
+digits=4
+survey=True
+splitSurvey=True
