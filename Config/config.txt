@@ -1,9 +1,12 @@
-delay=30
+delay=1
 recess=10
 warmup_delay=30
 Runtime=0.8
+Between=4
 stimuli=True,RAN,IMG
-warmup=True,ORD,IMG
+warmup=False,ORD,IMG
 digits=4
 survey=True
-splitSurvey=True
+splitSurvey=4
+randomSurvey=True
+finale=True

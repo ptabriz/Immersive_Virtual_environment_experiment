@@ -1,6 +1,13 @@
-I like this environment
-In this environment, I would be able to rest and recover my ability to focus
-Spending time here gives me a good break from my day-to-day routine
-This place has fascinating qualities,There is a great deal of distraction in this place
-I could find many ways to enjoy myself in this environment
-I feel safe to spend time alone in this place during day
+W1:This is a demo:Strongly disagree..................................................Strongly agree 
+1:I like this environment:Strongly disagree..................................................Strongly agree
+2:Everything I see in this environment goes well together:Strongly disagree..................................................Strongly agree
+3:How natural do you percieve this enviornment?:Not at all ..................................................................Very natural
+4:I would be able to rest and recover my ability to focus in this environment:Strongly disagree..................................................Strongly agree
+5:How complex you perceive this enviornment?:Not at all ..................................................................Very complex
+6:Spending time here gives me a good break from my day-to-day routine:Strongly disagree...................................................Strongly agree
+7:I feel safe to spend time alone in this place during day:Strongly disagree...................................................Strongly agree
+8:I would be able to rest and recover my ability to focus in this environment:Strongly disagree...................................................Strongly agree
+9:There is much to explore and discover in this environment:Strongly disagree...................................................Strongly agree
+10:How easy would it be to move within or through this environment?:Not at all........................................................................ Very easy
+11:How well can you see all parts of this environment without having your view blocked or interfered with?:Not at all........................................................................ Very well
+12:I would be able to rest and recover my ability to focus in this environment:Strongly disagree...................................................Strongly agree

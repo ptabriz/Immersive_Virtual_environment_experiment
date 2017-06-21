@@ -1,6 +1,21 @@
 ﻿import os
 import vizinput
 from random import shuffle
+import viztask
+import oculus
+import vizinfo
+import vizdlg
+import datetime
+import csv
+import random
+import vizshape
+import vizjoy
+import vizact
+from math import ceil
+import vizfx.postprocess
+from vizfx.postprocess.color import GrayscaleEffect
+from vizfx.postprocess.composite import BlendEffect
+import collections
 
 currentDIR = os.path.dirname(os.path.abspath(__file__))
 IMAGE_PATH = os.path.join(currentDIR,"ENV")
@@ -12,53 +27,70 @@ CONFIG_PATH = os.path.join(currentDIR,"config")
 
 
 
-	
-#participant(3)
+### Get Joytick Command ####
+class waitJoyButtonDown( viztask.Condition ):
+    def __init__( self, joy, button ):
+        self._joy = joy
+        self._button = button
+    def update( self ):
+        return self._joy.isButtonDown(self._button)
 
+
+	
 class IVE:
 	
 	PID = "a"
 	def __init__(self):
 
+		self.hmd = oculus.Rift()
+		self.link = viz.link(self.hmd.getSensor(), viz.MainView)
+		self.sky = ""
+		self.env = ""
+		
+		self.mainSurvey = []
+		self.warmupSurvey = []
+
 		self.config= self.readconfig()
-		print self.config
+		
+
 		self.stimuli = self.config["stimuli"].strip(" ").split(",")
 		self.warmup = self.config["warmup"].strip(" ").split(",")
+		self.survey = self.config["survey"]
+		self.splitSurvey = self.config["splitSurvey"]
 		self.delay = self.config["delay"]
 		self.PIDdigits = int(self.config["digits"])
-
-		#self.group = self.participant(self.PIDdigits)[0]
-		self.group = 'A'
-
-		self.stimuliList=self.expDesign()[0][self.group]
-		self.warmupList=self.expDesign()[1]
+		self.finale = self.config["finale"]
 		
-		self.survey = self.config["survey"]
-		print self.survey
-		self.splitSurvey = self.config["splitSurvey"]
+		self.group = self.participant()[0]
+		self.designOutput= self.expDesign()
 		
-		self.totalGroups = len(self.expDesign()[1].keys())
-		print self.totalgroups
+		
+		self.stimuliList = self.designOutput[0][self.group]
+		self.warmupList =  self.designOutput[1]
+		self.groupNumber = len(self.designOutput[1].keys())
+		#print self.groupNumber
+		viz.go()
 
 	
-	def participant(self, character):
+	def participant(self):
 		
 		''' Participant ID and filemangement '''
 		
 		subject = vizinput.input('Please enter the participant identification number?') #Prompt for the participant's identification number.	
 		participantList=open(DATA_PATH+"/"+'participant_list.txt')	
-		groups= expDesign()[0].keys()
-		if not len(str(subject)) == character:
-			print "Invalid ID ! entered id should have one 'alphabetical' character from {0} (case sensetive) and {1} 'digits'".format(groups,character-1)
+		#groups = self.designOutput[0].keys()
+		
+		if not len(str(subject)) == self.PIDdigits:
+			print "Invalid ID ! entered id should have one 'alphabetical' character from {0} (case sensetive) and {1} 'digits'".format(groups,self.PIDdigits-1)
 			sys.exit()
 				
-		elif str(subject)[0] not in groups:
-			print "Participant ID should start with an 'alphabetical' character from {0} (case sensetive)".format(groups)
-			sys.exit()
+#		elif str(subject)[0] not in groups:
+#			print "Participant ID should start with an 'alphabetical' character from {0} (case sensetive)".format(groups)
+#			sys.exit()
 				
 		for line in participantList.readlines(): 
 		
-			if str(subject) == line[:character]:
+			if str(subject) == line[:self.PIDdigits]:
 				print "Invalid ID ! the participant Id already exists"
 				sys.exit()
 				
@@ -66,6 +98,7 @@ class IVE:
 		participantList.write(str(subject)+"\n")
 		participantList.close()
 		IVE.PID = subject
+		
 		return subject
 	
 	def readconfig(self):
@@ -92,13 +125,15 @@ class IVE:
 			
 			
 			stimuliList=[]
+			
 			if "VID" in self.stimuli[2]:
 				
-				stimuliList = [(file) for file in os.listdir(IMAGE_PATH) if file.endswith("_.MP4") and file[0]==self.group]		
+				stimuliList = [(file) for file in os.listdir(IMAGE_PATH) if file.endswith("_.MP4") and file[0] == self.group]		
 
 			elif "IMG" in self.stimuli[2]:
 
-				stimuliList = [(file[:-9]+ '.png') for file in os.listdir(IMAGE_PATH) if file.endswith("_negx.png") and file[0]==self.group]		
+				stimuliList = [(file[:-9]+ '.png') for file in os.listdir(IMAGE_PATH) if file.endswith("_negx.png") and file[0] == self.group]
+				
 		
 			for env in stimuliList:			
 				if env[0] in groupDIC.keys():
@@ -127,71 +162,152 @@ class IVE:
 			if "RAN" in self.warmup[1]:
 					shuffle(warmupDIC["W"])
 			
-			if "True" in self.survey:
-				
-				surveyFile = os.path.join(CONFIG_PATH,"survey.txt")
-				survey = open(configFile,'r')
+		if "True" in self.survey:
+
+			surveyPath = os.path.join(CONFIG_PATH,"survey.txt")
+			surveyFile = open(surveyPath,'r')
+			for line in surveyFile.readlines():
 					
-				if "True" in self.splitSurvey:
-				
-					print "a"
-				elif "False" in self.splitSurvey:
-					print "b"
-				
-		return groupDIC,warmupDIC,survey
-			
-	def execute(self):
-		for index, scene in enumerate(self.stimuliList):
-			print self.stimuliList[index]
-			changescene(self.stimuliList[index])
-			if self.survey:
-				yield runRunsurvey(self.delay)
-				
-			
-class survey:
-	survey = [
-			'I like this environment',
-			'Everything I see in this environment goes well together',
-			"How natural do you percieve this enviornment?", 
-			"I would be able to rest and recover my ability to focus in this environment",
+				if "W" in line.split(":")[0]:
+					self.warmupSurvey.append(line)
+				else: 
+					self.mainSurvey.append(line)
+						
+		if "False" not in self.splitSurvey: 
+			split = int(self.config["splitSurvey"])
+			groupIndex = ord(self.group)-64
+			if len(self.mainSurvey) % split != 0:
+				print "Survey is not equally distributed"
+			else:
+						
+				self.mainSurvey = self.mainSurvey [(groupIndex-1) * split:(groupIndex * split)-1]
 
-			"How complex you perceive this enviornment?",
-			"Spending time here gives me a good break from my day-to-day routine",
-			"I feel safe to spend time alone in this place during day",
-			"I would be able to rest and recover my ability to focus in this environment.",
+		if "True" in self.config["randomSurvey"]:
+			shuffle(self.mainSurvey)
 
-			"There is much to explore and discover in this environment ",
-			"How easy would it be to move within or through this environment?",
-			"How well can you see all parts of this environment without having your view blocked or interfered with?",
-			"I would be able to rest and recover my ability to focus in this environment ",
-			]
-			
-	
-	surveyScale={
-
-	'I like this environment': 								   						'Strongly disagree..................................................Strongly agree',
-	'Everything I see in this environment goes well together': 						'Strongly disagree..................................................Strongly agree',
-	"How natural do you percieve this enviornment?":            					'Not at all ..................................................................Very natural',
-	"I would be able to rest and recover my ability to focus in this environment":	'Strongly disagree..................................................Strongly agree',
-
-
-	"How complex you perceive this enviornment?":            					    'Not at all ..................................................................Very complex',
-	"Spending time here gives me a good break from my day-to-day routine":  		'Strongly disagree...................................................Strongly agree',
-	"I feel safe to spend time alone in this place during day":						'Strongly disagree...................................................Strongly agree',
-	"I would be able to rest and recover my ability to focus in this environment.":	'Strongly disagree...................................................Strongly agree',
-
-	"There is much to explore and discover in this environment ":					'Strongly disagree...................................................Strongly agree',
-	"How easy would it be to move within or through this environment?": 		    'Not at all........................................................................ Very easy',
-	"How well can you see all parts of this environment without having your view blocked or interfered with?":
-																					'Not at all........................................................................ Very well',
-	"I would be able to rest and recover my ability to focus in this environment ":	'Strongly disagree...................................................Strongly agree',
-	} 
-
-	def __init__(self,scene,delay):
+#				
+		return groupDIC,warmupDIC
 		
+	def changeScene(self,scene,mode="IMG"):
+		
+		if mode == "Video" : 
+			video = viz.addVideo(scene)
+			self.sky = vizshape.addSphere(radius=10000, flipFaces=True)
+			self.sky.texture(video)
+			self.sky.drawOrder(-100)
+			video.play() 
+			self.sky.disable(viz.DEPTH_TEST)
+			self.sky.drawOrder(-100)
+					
+		if mode == "IMG" :
+			self.env = viz.addEnvironmentMap(IMAGE_PATH+"/"+scene)
+			self.sky = viz.addCustomNode('skydome.dlc')
+			self.sky.texture(self.env)
+			
+		if mode == "3D" :			
+			scene = viz.add(scene)
+			navigationNode = viz.addGroup()
+			self.link = viz.link(navigationNode, viz.MainView)
+			self.link.preMultLinkable(self.hmd.getSensor())
+			self.link.setOffset([0,1.8,0])
+
+	def removeScene(self):
+		
+		self.sky.remove()  
+		self.link.remove() 
+				
+	def execute(self):
+		
+		if "True" in self.warmup[0] :
+			yield self.changeScene(self.stimuliList[index])	
+			if self.warmupSurvey:
+				yield survey(scene,self.delay, self.warmupSurvey).changeQ("")
+			yield self.removeScene()
+				
+		for index, scene in enumerate(self.stimuliList):
+			yield self.changeScene(self.stimuliList[index])		
+			
+			if "True" in self.survey:
+				yield survey(scene,self.delay, self.mainSurvey).changeQ("")	
+			else :
+				yield viztask.waitKeyDown(" ")
+				
+			yield self.removeScene()	
+			
+			#clear texture memory after 3 scenes#
+			if index % 3 == 0 :	
+				viz.setOption(scene,viz.FREE_TEXTURE_MEMORY_HINT)
+			
+		if "True" in self.finale:
+			finaleFile = os.path.join(IMAGE_PATH, "Finale.osgb")
+			yield self.changeScene(finaleFile, "3D")
+			
+
+class survey:
+	
+	### Joystick operations##
+	dinput = viz.add('DirectInput.dle')	# Load DirectInput plug-in 
+	joystick = dinput.addJoystick()	# Add first available joystick
+	if not joystick:		# Checks for Joystick availability
+		sys.exit('Failed to connect to joystick')
+	joystick.setDeadZone(0.2)	# Set dead zone threshold so small movements of joystick are ignored
+	
+	d = viz.Data()
+	waitButton1 = waitJoyButtonDown(joystick,0)
+	waitButton2 = waitJoyButtonDown(joystick,1)
+	
+	## Setup color Theme ## 
+	blackTheme = viz.Theme()
+	blackTheme.borderColor = (.1,0.1,0.1,1)
+	blackTheme.backColor = (0.7,0.7,0.7,7)
+	blackTheme.lightBackColor = (0.6,0.6,0.6,1)
+	blackTheme.darkBackColor = (0.2,0.2,0.2,1)
+	blackTheme.highBackColor = (0.2,0.2,0.2,1)
+
+	### Fade-to-gray-efect , ! Not operationalized in this study !###
+	gray_effect = BlendEffect(None,GrayscaleEffect(),blend=0.0)
+	gray_effect.setEnabled(False)
+	vizfx.postprocess.addEffect(gray_effect)
+		
+
+	def __init__(self, scene, delay, survey):
+		
+				#### Panels ######
+		self.canvas = viz.addGUICanvas()	# Create canvas for display UI to user
+		self.Panel = vizinfo.InfoPanel('', icon=False,parent=self.canvas,fontSize=18)	#Define main Panel#
+		self.Panel.alpha(.8) #set transparency
+		self.rowBottom= vizdlg.Panel(layout=vizdlg.LAYOUT_HORZ_CENTER, background=False, border=False, theme=self.blackTheme, spacing=30)	#Add rows to the panel#
+		self.Panel.addSeparator(.8,padding=(10, 10))
+		self.Panel.addItem(self.rowBottom)
+		self.rowBottom.setTheme(self.blackTheme)
+		self.Panel.getPanel().fontSize(22)
+		self.Panel.setTheme(self.blackTheme)
+		self.Panel.getPanel().font('Times New Roman')
+		self.Panel.getPanel().fontSize(12)
+			
+					### SLIDER ######
+		self.Slider= self.rowBottom.addItem(viz.addProgressBar("0"))
+	#	maxNumber=Panel.addLabelItem('', viz.addText('Not at all ..................................................................Very high'))
+	#	maxNumber.fontSize(18)
+		self.Slider.font('calibri')
+		self.Slider.setScale(4,2.4)
+		self.Slider.message( str('%.2f'%(round(0)))[:1] )
+		viz.link(viz.CenterBottom,self.Panel,offset=(260, 250, 0))
+		
+		self.scaleText = ""	
+		
+		self.survey = survey
 		self.scene = scene
 		self.delay = delay
+
+		##### Manages panel visibility #####
 		
+	def showdialog():
+			yield dialog.show()
+		
+	def showdialog():
+			yield dialog.show()
+				
 #### Save participants rating #####
 	def saveRate(qIndex,sceneIndex,question):
 
@@ -209,86 +325,84 @@ class survey:
 
 	#### define slider move on hat change event###
 	def onHatChange(self,e):
-		pos = Slider.get()
-		if int(e.value)==90:
-			pos=pos+.090909
-			Slider.set(pos)
-		elif int(e.value)==270:
-			pos=pos-.090909
-			Slider.set(pos)
+		pos = self.Slider.get()
+		if int(e.value) == 90:
+			pos = pos+.090909
+			self.Slider.set(pos)
+		elif int(e.value)== 270:
+			pos = pos-.090909
+			self.Slider.set(pos)
 	#Update rating update#
-		if pos<.07:
-			Slider.message("")
+		if pos < .07:
+			self.Slider.message("")
 		else:
-			if pos>0.93:
+			if pos > 0.93:
 				rate=11
-				Slider.message( "10" )
+				self.Slider.message( "10" )
 			else:
 				rate=ceil(abs(pos*10))
-				Slider.message(str(rate-1)[:1])
+				self.Slider.message(str(rate-1)[:1])
 			return rate
 
 	#### slider question update###		
-	def changeMessage(a,breakQ=True):
-		global maxNumber
-		if a not in IntroQ:
-			Panel.removeItem(maxNumber)	
-			maxNumber= Panel.addLabelItem('',viz.addText(surveyScale[a]))
-		#maxNumber= Panel.addLabelItem(' Strongly disagree.............................................................................Strongly agree',viz.addText(''))
-		maxNumber.fontSize(18)
+	def changeMessage(self,item,scale,breakQ=True):
+		self.Panel.removeItem(self.scaleText)	
+		self.scaleText = self.Panel.addLabelItem('',viz.addText(scale))
+		self.scaleText.fontSize(18)
 
 		if breakQ:
-			if len(a)> breakLimit:
-				t= a.split()
+			breakLimit = 10 
+			if len(item)> breakLimit:
+				t = item.split()
 				ttrunk1=t[:breakLimit]
 				ttrunk2=t[breakLimit:]
 				j=" ".join(ttrunk1)
 				k=" ".join(ttrunk2)
-				Question=Panel.setText("   "+j+"\n"+"   "+k) 
+				Question=self.Panel.setText("   "+j+"\n"+"   "+k) 
 		else:
-			Question=Panel.setText("   "+a+"\n"+"                          .                      ")
+			Question=self.Panel.setText("   "+a+"\n"+"                          .                      ")
 			
+	
+	def changeQ(self,panelTitle,breakQ=True):
+		#print self.survey
+		indexQuestion="warmup"
+		shuffle(self.survey)
+		self.Panel.visible(viz.OFF)
+		yield viztask.waitTime(int(self.delay))
+		self.Panel.visible(viz.ON)
+		self.rowBottom.visible(viz.ON)
+		#self.maxNumber.visible(viz.ON)
 
-	def changeQ(panelTitle,breakQ=True):
-		indexQuestion="delay"
-		shuffle(shuffleQuestionList)
-		Panelvisible(Panel,0)
-		yield viztask.waitTime(self.delay)
-		Panelvisible(Panel,1)
-		srowBottom.visible(viz.ON)
-		maxNumber.visible(viz.ON)
-		qIndex=0
-		while qIndex<len(qList):
-			Panel.setTitle(panelTitle)
-			viz.callback(dinput.HAT_EVENT, onHatChange)
-			question=shuffleQuestionList[qIndex]
-			changeMessage(shuffleQuestionList[qIndex],breakQ)
+		for counter, items in enumerate(self.survey) :
 			
-			if condition=="scene":
-				index=mainQOrig.index(question)
-			if condition=="demo":
-				index=IntroQ.index(question)
-				
-			indexQuestion=str(index+1)
-			global indexQuestion
+			self.Panel.setTitle(panelTitle)
+			viz.callback(self.dinput.HAT_EVENT, self.onHatChange)
+			question = items.split(":")[1]
+			index = items.split(":")[0]
+			scale = items.split(":")[2]
+			
+			self.changeMessage(question, scale, breakQ)		
+
 			#track.setEnabled(viz.OFF)
-			yield viztask.waitAny([waitButton1],d)
-			if d.condition is waitButton1:
+			yield viztask.waitAny([self.waitButton1],self.d)
+			if self.d.condition is self.waitButton1:
 					yield viztask.waitTime(.2)
-					pos = Slider.get()
+					pos = self.Slider.get()
 					if round(abs(pos/.1),1) > 0:
-						saveRate(qIndex,sceneIndex,index)
-						Slider.set(0)
-						Slider.message( "" )
-						qIndex=qIndex+1
-					else:
+						#saveRate(qIndex,sceneIndex,index)
+						self.Slider.set(0)
+						self.Slider.message( "" )
 						yield viztask.waitTime(.2)
+					else:
 						#Panel.setTitle("MINIMUM SELECTION IS (0)")
 						yield viztask.waitTime(3)
-		if qIndex==len(qList):
-			#viztask.schedule(FadeToGrayTask())
-			Panelvisible(Panel,0)
-			sky.visible(viz.OFF)
-			yield viztask.waitTime(1)		
+			if counter > len(self.survey):
+				break
+		self.Panel.visible(viz.OFF)
+		yield viztask.waitTime(1)
+			
+
+			
 #participant(4)	
-IVE().execution()
+#viztask.schedule(IVE().execute())
+viztask.schedule(IVE().execute())
