@@ -94,7 +94,7 @@ ID    order  Scene  response  survey
 
 
 ```
-Scene   survey_item   side    x           y          z
+Scene     survey_item   side       x               y              z
 0_nature.png	3	front	972.70111084	885.047119141	138.952880859
 0_nature.png	3	front	891.2890625	874.664764404	149.335235596
 0_nature.png	3	front	784.580047607	836.517028809	187.482971191
