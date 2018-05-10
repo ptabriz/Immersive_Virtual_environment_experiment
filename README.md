@@ -1,6 +1,7 @@
-# Immersive Virtual environment experiment
-Application for designing and implementation, and data collection for user-experience and perception surveys in Immersive Virtual Reality environments. Researchers can select from variety of common experiment design parameters (randomization, group assignment, etc.), use their preferred immersive stimuli type and survey, and save the experiment results and user behavior metrics as analysis-ready text files.   
+# VRscapes : A tool for quantitative design research in VR environment
 
+Application for designing and implementation, and data collection for user-experience and on-screen perception surveys in Immersive Virtual Reality environments. Researchers can select from variety of common experiment design parameters (randomization, group assignment, etc.), use their preferred immersive stimuli type and survey, and save the experiment results and user behavior metrics as analysis-ready text files. This is a great tool for researches whithout programming background to conduct rigorous psychological experiments in VR environment.  
+<br><br>
 <img src="img/anim_exp.gif" width=62%> <img src="img/participant_1.jpg" width=28%>
 
 _________
@@ -15,21 +16,20 @@ Group A | Group B | Group C | ...
 scene 1A|scene 1B |scene 1C | ...
 scene 2A|scene 2B |scene 2C | ...
 
-### Participant
+### Participant assignment
 - Record participant ID
 - Allow or disallow existing participant ID
 - Save participants list
 </br></br>
 
-<img src="img/participant.PNG" width=26%><img src="img/participant_1.PNG" width=26%><img src="img/participant_3.PNG" width=26%>
+<img src="img/participant.PNG" width=26%> <img src="img/participant_1.PNG" width=26%> <img src="img/participant_3.PNG" width=27%>
 
 ### Experiment phasing
 - Warmup and practice phase
 - Debriefing and finale phase
 - Recess periods
 
-<img src="img/warmup.PNG" width=300>
-<img src="img/break.PNG" width=300>
+<img src="img/warmup.PNG" width=26%> <img src="img/break.PNG" width=26%> <img src="img/goodbye.PNG" width=26%>
 
 ### Timing
 - Adjust the presentation duration of each scene
@@ -65,7 +65,3 @@ _________
 ### Recording head-tracking
 
 ### Analysis-ready tab separated output file
-
-
-
-<img src="img/participant.PNG" width=300>
