@@ -1,6 +1,6 @@
 # VRscapes : A tool for quantitative design research in VR environment
 
-Application for designing and implementation, and data collection for user-experience and on-screen perception surveys in Immersive Virtual Reality environments. Researchers can select from variety of common experiment design parameters (randomization, group assignment, etc.), use their preferred immersive stimuli type and survey, and save the experiment results and user behavior metrics as analysis-ready text files. This is a great tool for researches whithout programming background to conduct rigorous psychological experiments in VR environment.  
+VR scape is a software for designing, implementation, and data collection for user-experience and perception surveys in Immersive Virtual Reality environments. Researchers can select from variety of common experiment design parameters (randomization, group assignment, etc.), use their preferred immersive stimuli type and survey, and save the experiment results and user behavior metrics as analysis-ready text files. This is a great tool for researches with limited programming background to conduct rigorous psychological experiments in VR environment.  
 <br><br>
 <img src="img/anim_exp.gif" width=62%> <img src="img/participant_1.jpg" width=28%>
 
@@ -69,7 +69,7 @@ _________
 ### Creating analysis-ready output of survey responses <br>
 
 ```
-ID    order  Scene  response  survey
+ID    order   Scene  response   survey_item
 002	3	1_natur	10	Qindex   1
 002	3	1_natur	6	Qindex   5
 002	3	1_natur	9	Qindex   6
