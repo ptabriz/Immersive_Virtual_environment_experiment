@@ -22,15 +22,10 @@ scene 2A|scene 2B |scene 2C | ...
 <a href="http://www.youtube.com/watch?v=Z8r0caXFdHo"><img src= http://img.youtube.com/vi/Z8r0caXFdHo/0.jpg width=45% ></a>
 
 ### Custom VR headset type
-- Oculus Dk2
--
-- Oculus CV1
-- HTC VIVE (coming soon)
-
 
 |Oculus Dk1 | Oculus Dk2 | Oculus CV1 | HTC VIVE|
 | --- | --- | --- | ---|
-<img src="img/DK1.jpg" width=100%>|<img src="img/dk2.jpg" width=100%>|<img src="img/CV1.png" width=100%>|<img src="img/htc-vive.jpg" width=50%>|
+<img src="img/DK1.jpg" width=130%>|<img src="img/dk2.jpg" width=100%>|<img src="img/CV1.png" width=120%>|<img src="img/htc-vive.jpg" width=30%>|
 
 
 ### Custom interaction type
