@@ -64,12 +64,38 @@ _________
 |<img src="img/joystick.jpg" width=100%>|<img src="img/touch.jpg" width=100%>|<img src="img/leap.jpg" width=120%>|
 
 _________
-### Analysis-ready output
+## 9. Outputs
 
-<img src="img/head_tracking.jpg" width=80%>
+### Creating analysis-ready output of survey responses <br>
 
 ```
-Scene           side       x              y           z
+ID    order  Scene response surveyItem
+002	  3	    1_natur	    10     1
+002	  3	    1_natur 	  6	     5
+002	  3	    1_natur	    9	     6
+002	  3	    1_natur	    8	     7
+002 	3	    1_natur	    10	   3
+002	  3	    1_natur	    10	   2
+002	  3	    3_natur	    7	     7
+002	  3	    3_natur	    9	     3
+002 	3	    3_natur	    8	     4
+002 	3	    3_natur	    9	     6
+002 	3	    3_natur	    10	   2
+002 	3	    3_natur	    3	     5
+002	  3	    3_natur	    10	   1
+002	  3	    0_natur	    8	     4
+002	  3	    0_natur	    10	   1
+002	  3	    0_natur	    5	     5
+002	  3	    0_natur	    9	     6
+...
+```
+
+### Saving head-tracking behavior for each scene and survey item<br>
+<img src="img/head_tracking.jpg" width=80%>
+
+
+```
+Scene        survey_item  side       x              y           z
 0_nature.png	3	front	  972.70111084	885.047119141	138.952880859
 0_nature.png	3	front	  891.2890625	  874.664764404	149.335235596
 0_nature.png	3	front	  784.580047607	836.517028809	187.482971191
@@ -82,4 +108,5 @@ Scene           side       x              y           z
 0_nature.png	3	bottom	6026.56817627	118.979553223	905.020446777
 0_nature.png	3	front	  748.643783569	975.29284668	48.7071533203
 0_nature.png	3	front	  663.912582397	810.612518311	213.387481689
+...
 ```
