@@ -500,10 +500,10 @@ def Changescene(i):
 	global sky
 	
 def Sky(toggle):
-	if toggle==1:
+	if toggle == 1:
 		sky = viz.addCustomNode('skydome.dlc')
 		global sky
-	if toggle==0:
+	if toggle == 0:
 		sky.remove()
 
 def changeQ(sceneIndex,qList,delayTime,panelTitle,breakQ=True):
@@ -539,7 +539,7 @@ def changeQ(sceneIndex,qList,delayTime,panelTitle,breakQ=True):
 		if condition=="demo":
 			index=IntroQ.index(question)
 			
-		indexQuestion=str(index+1)
+		indexQuestion = str(index+1)
 		global indexQuestion
 		#track.setEnabled(viz.OFF)
 		yield viztask.waitAny([waitButton1],d)
@@ -555,7 +555,7 @@ def changeQ(sceneIndex,qList,delayTime,panelTitle,breakQ=True):
 					yield viztask.waitTime(.2)
 					#Panel.setTitle("MINIMUM SELECTION IS (0)")
 					yield viztask.waitTime(3)
-	if qIndex==len(qList):
+	if qIndex == len(qList):
 		#viztask.schedule(FadeToGrayTask())
 		Panelvisible(Panel,0)
 		sky.visible(viz.OFF)
@@ -575,7 +575,7 @@ def recess():
 
 def exc():
 	
-	if int(subject[2:])%2==0:
+	if int(subject[2:])%2 == 0:
 		demo1="U_0_control.png"
 		demo2="2_med.png"
 	else:
