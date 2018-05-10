@@ -29,7 +29,7 @@ scene 2A|scene 2B |scene 2C | ...
 - Debriefing and finale phase
 - Recess periods
 
-<img src="img/warmup.PNG" width=26%> <img src="img/break.PNG" width=26%> <img src="img/goodbye.PNG" width=26%>
+<img src="img/warmup.PNG" width=31%> <img src="img/break.PNG" width=31%> <img src="img/goodbye.PNG" width=34%>
 
 ### Timing
 - Adjust the presentation duration of each scene
