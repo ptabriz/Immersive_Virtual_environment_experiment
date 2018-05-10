@@ -21,9 +21,7 @@ scene 2A|scene 2B |scene 2C | ...
 - Save participants list
 </br></br>
 
-<img src="img/participant.PNG" width=23%>
-<img src="img/participant_1.PNG" width=23%>
-<img src="img/participant_3.PNG" width=23%>
+<img src="img/participant.PNG" width=26%><img src="img/participant_1.PNG" width=26%><img src="img/participant_3.PNG" width=26%>
 
 ### Experiment phasing
 - Warmup and practice phase
