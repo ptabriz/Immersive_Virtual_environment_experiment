@@ -69,25 +69,24 @@ _________
 ### Creating analysis-ready output of survey responses <br>
 
 ```
-ID    order  Scene response surveyItem
-002	  3	    1_natur	    10     1
-002	  3	    1_natur 	  6	     5
-002	  3	    1_natur	    9	     6
-002	  3	    1_natur	    8	     7
-002 	3	    1_natur	    10	   3
-002	  3	    1_natur	    10	   2
-002	  3	    3_natur	    7	     7
-002	  3	    3_natur	    9	     3
-002 	3	    3_natur	    8	     4
-002 	3	    3_natur	    9	     6
-002 	3	    3_natur	    10	   2
-002 	3	    3_natur	    3	     5
-002	  3	    3_natur	    10	   1
-002	  3	    0_natur	    8	     4
-002	  3	    0_natur	    10	   1
-002	  3	    0_natur	    5	     5
-002	  3	    0_natur	    9	     6
-...
+ID    order  Scene response survey
+002	3	1_natur	10	Qindex   1
+002	3	1_natur	6	Qindex   5
+002	3	1_natur	9	Qindex   6
+002	3	1_natur	8	Qindex   7
+002	3	1_natur	10	Qindex   3
+002	3	1_natur	10	Qindex   2
+002	3	3_natur	7	Qindex   7
+002	3	3_natur	9	Qindex   3
+002	3	3_natur	8	Qindex   4
+002	3	3_natur	9	Qindex   6
+002	3	3_natur	10	Qindex   2
+002	3	3_natur	3	Qindex   5
+002	3	3_natur	10	Qindex   1
+002	3	0_natur	8	Qindex   4
+002	3	0_natur	10	Qindex   1
+002	3	0_natur	5	Qindex   5
+002	3	0_natur	9	Qindex   6
 ```
 
 ### Saving head-tracking behavior for each scene and survey item<br>
@@ -96,17 +95,16 @@ ID    order  Scene response surveyItem
 
 ```
 Scene        survey_item  side       x              y           z
-0_nature.png	3	front	  972.70111084	885.047119141	138.952880859
-0_nature.png	3	front	  891.2890625	  874.664764404	149.335235596
-0_nature.png	3	front	  784.580047607	836.517028809	187.482971191
-0_nature.png	3	front	  738.302322388	872.624267578	151.375732422
-0_nature.png	3	front	  770.977783203	978.449859619	45.5501403809
+0_nature.png	3	front	972.70111084	885.047119141	138.952880859
+0_nature.png	3	front	891.2890625	874.664764404	149.335235596
+0_nature.png	3	front	784.580047607	836.517028809	187.482971191
+0_nature.png	3	front	738.302322388	872.624267578	151.375732422
+0_nature.png	3	front	770.977783203	978.449859619	45.5501403809
 0_nature.png	3	bottom	5947.07226562	62.4846496582	961.515350342
 0_nature.png	3	bottom	5966.37063599	140.469329834	883.530670166
 0_nature.png	3	bottom	5967.42300415	206.965942383	817.034057617
 0_nature.png	3	bottom	6058.60418701	174.909057617	849.090942383
 0_nature.png	3	bottom	6026.56817627	118.979553223	905.020446777
-0_nature.png	3	front	  748.643783569	975.29284668	48.7071533203
-0_nature.png	3	front	  663.912582397	810.612518311	213.387481689
-...
+0_nature.png	3	front	748.643783569	975.29284668	48.7071533203
+0_nature.png	3	front	663.912582397	810.612518311	213.387481689
 ```
