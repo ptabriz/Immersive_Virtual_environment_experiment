@@ -17,12 +17,9 @@ scene 1A|scene 1B |scene 1C | ...
 scene 2A|scene 2B |scene 2C | ...
 
 ### Participant assignment
-- Record participant ID
-- Allow or disallow existing participant ID
-- Save participants list
-</br></br>
-
-<img src="img/participant.PNG" width=26%> <img src="img/participant_1.PNG" width=26%> <img src="img/participant_3.PNG" width=27%>
+|Get and record participant ID |Allow or disallow existing participant ID |Save participants list
+| :---: | :----: | :----: |
+|<img src="img/participant.PNG" >| <img src="img/participant_1.PNG">|<img src="img/participant_3.PNG">|
 
 ### Experiment phasing
 | Warmup and practice phase| Recess periods | Debriefing and finale phase
