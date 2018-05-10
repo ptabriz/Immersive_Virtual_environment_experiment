@@ -1,9 +1,10 @@
 # Immersive Virtual environment experiment
 Application for designing and implementation, and data collection for user-experience and perception surveys in Immersive Virtual Reality environments.
 
-<img src="img/anim_exp.gif" width=500>
+<img src="img/anim_exp.gif" width=62%> <img src="img/participant_1.jpg" width=28%>
 
-
+_________
+## Features
 ### Experiment design
 - Between group design
 - Within group designs
