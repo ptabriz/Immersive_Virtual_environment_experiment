@@ -55,11 +55,9 @@ _________
 _________
 ## 4. Custom interaction type
 
-|Oculus Dk2|Oculus CV1|HTC VIVE|
-| :---: | :----: | :----: |:---:|
-- Joystick
-- Oculus touch
-- Voice recognition (coming soon)
+|Joystick|Oculus touch|Leap motion (coming soon)|
+| :---: | :----: | :----: |
+<img src="img/joystick.jpg" width=100%>|<img src="img/touch.jpg" width=100%>|<img src="img/leap.jpg" width=120%>|
 
 _________
 ### Recording head-tracking
