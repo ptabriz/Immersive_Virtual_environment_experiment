@@ -16,23 +16,28 @@ Group A | Group B | Group C | ...
 scene 1A|scene 1B |scene 1C | ...
 scene 2A|scene 2B |scene 2C | ...
 
-### Participant assignment
+## 2. Participant assignment
 |Get and record participant ID |Allow or disallow existing participant ID |Save participants list
 | :---: | :----: | :----: |
 |<img src="img/participant.PNG" >| <img src="img/participant_1.PNG">|<img src="img/participant_3.PNG">|
 
-### Experiment phasing
+### 3. Experiment phasing
 | Warmup and practice phase| Recess periods | Debriefing and finale phase
 | :---: | :----: | :----: |
 |<img src="img/warmup.PNG" width=100%>|<img src="img/break.PNG" width=100%>|<img src="img/goodbye.PNG" width=100%>|
 
-### Timing
+### 4. Timing
 - Adjust the presentation duration of each scene
 - Adjust the delay before the onset of the on-screen survey
 
-### Survey design
+### 5. Survey design
 - Custom survey items and scales (e.g., 1-10)
 - Random / ordered survey presentation
+
+
+|<img src="img/survey_1.PNG" width=100%>|<img src="img/survey_2.PNG" width=100%>|
+| :---: | :----: |
+| | |
 
 _________
 ## 2. Custom stimuli type
