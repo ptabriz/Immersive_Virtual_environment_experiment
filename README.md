@@ -25,11 +25,9 @@ scene 2A|scene 2B |scene 2C | ...
 <img src="img/participant.PNG" width=26%> <img src="img/participant_1.PNG" width=26%> <img src="img/participant_3.PNG" width=27%>
 
 ### Experiment phasing
-- Warmup and practice phase
-- Debriefing and finale phase
-- Recess periods
-
-<img src="img/warmup.PNG" width=31%> <img src="img/break.PNG" width=31%> <img src="img/goodbye.PNG" width=34%>
+| Warmup and practice phase| Recess periods | Debriefing and finale phase
+| :---: | :----: | :----: |
+|<img src="img/warmup.PNG" width=100%>|<img src="img/break.PNG" width=100%>|<img src="img/goodbye.PNG" width=100%>|
 
 ### Timing
 - Adjust the presentation duration of each scene
