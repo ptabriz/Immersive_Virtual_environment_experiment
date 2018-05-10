@@ -6,7 +6,8 @@ Application for designing and implementation, and data collection for user-exper
 
 _________
 # Features
-## 1. Custom experiment design
+
+## 1. Experiment design
 - Between group design
 - Within group designs
 - Mixed design
@@ -15,22 +16,25 @@ Group A | Group B | Group C | ...
 --- | --- | --- | ---
 scene 1A|scene 1B |scene 1C | ...
 scene 2A|scene 2B |scene 2C | ...
-
+_________
 ## 2. Participant assignment
 |Get and record participant ID |Allow or disallow existing participant ID |Save participants list
 | :---: | :----: | :----: |
 |<img src="img/participant.PNG" >| <img src="img/participant_1.PNG">|<img src="img/participant_3.PNG">|
+_________
 
-### 3. Experiment phasing
+## 3. Experiment phasing
 | Warmup and practice phase| Recess periods | Debriefing and finale phase
 | :---: | :----: | :----: |
 |<img src="img/warmup.PNG" width=100%>|<img src="img/break.PNG" width=100%>|<img src="img/goodbye.PNG" width=100%>|
 
-### 4. Timing
+_________
+## 4. Timing
 - Adjust the presentation duration of each scene
 - Adjust the delay before the onset of the on-screen survey
 
-### 5. Survey design
+_________
+## 5. Survey design
 - Custom survey items and scales (e.g., 1-10)
 - Random / ordered survey presentation
 
@@ -40,26 +44,39 @@ scene 2A|scene 2B |scene 2C | ...
 | | |
 
 _________
-## 2. Custom stimuli type
+## 6. Custom stimuli type
 
 360 Images (cube face projection)|360 Videos (spherical projection)|3D models|
 | :---: | :----: | :----: |
 |<img src="img/ive_method.png" width=100%>|<a href="http://www.youtube.com/watch?v=Z8r0caXFdHo"><img src= http://img.youtube.com/vi/Z8r0caXFdHo/0.jpg width=100% ></a>|<img src= img/vizard_piazza_logo.png width=100% >|
 _________
-## 3. Custom VR headset type
+## 7. Custom VR headset type
 
 |Oculus Dk1|Oculus Dk2|Oculus CV1|HTC VIVE|
 | :---: | :----: | :----: |:---:|
 <img src="img/DK1.jpg" width=100%>|<img src="img/dk2.jpg" width=100%>|<img src="img/CV1.png" width=120%>|<img src="img/htc-vive.jpg" width=100%>|
 
 _________
-## 4. Custom interaction type
+## 8. Custom interaction type
 
 |Joystick|Oculus touch|Leap motion (coming soon)|
 | :---: | :----: | :----: |
 <img src="img/joystick.jpg" width=100%>|<img src="img/touch.jpg" width=100%>|<img src="img/leap.jpg" width=120%>|
 
 _________
-### Recording head-tracking
+### Analysis-ready output
 
-### Analysis-ready tab separated output file
+```
+demo	0	right	1960.4329834	871.345977783	152.654022217
+demo	0	back	2205.70559692	777.70904541	246.29095459
+demo	0	back	2393.20541382	651.769973755	372.230026245
+demo	0	back	2410.04270935	611.547988892	412.452011108
+demo	0	back	2146.01489258	621.257766724	402.742233276
+demo	0	right	1808.17141724	601.95690918	422.04309082
+demo	0	right	1705.22090149	553.382137299	470.617862701
+demo	0	right	1759.33303833	342.424377441	681.575622559
+demo	0	right	1803.92773438	347.545669556	676.454330444
+demo	0	right	1659.63278198	339.865844727	684.134155273
+demo	0	front	959.501800537	454.237922668	569.762077332
+demo	0	front	575.48179245	534.918670654	489.081329346
+```
